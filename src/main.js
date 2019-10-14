@@ -6,7 +6,19 @@ import store from './store'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app')
+
+Vue.mixin({
+	methods: {
+		getTerms() {
+			let term = localStorage.getItem('terms')
+
+			if ( localStorage.getItem('terms') != null && localStorage.getItem('terms') != '' ) 
+				return JSON.parse(localStorage.getItem('terms')) 
+			else return []
+		}
+	}
+})
